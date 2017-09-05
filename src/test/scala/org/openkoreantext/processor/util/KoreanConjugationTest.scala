@@ -1,5 +1,5 @@
 /*
- * Twitter Korean Text - Scala library to process Korean text
+ * Open Korean Text - Scala library to process Korean text
  *
  * Copyright 2014 Twitter, Inc.
  *
@@ -45,8 +45,8 @@ class KoreanConjugationTest extends TestBase {
   }
 
   def assertConjugations(filename: String, isAdjective: Boolean) {
-    val input = readFileByLineFromResources(filename)
-    val loaded: Seq[(String, String)] = input.toSeq.map {
+    val input = readWordsAsSeq(filename)
+    val loaded: Seq[(String, String)] = input.map {
       s =>
         val sp = s.split("\t")
         (sp(0), sp(1))

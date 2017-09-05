@@ -1,5 +1,5 @@
 /*
- * Twitter Korean Text - Scala library to process Korean text
+ * Open Korean Text - Scala library to process Korean text
  *
  * Copyright 2014 Twitter, Inc.
  *
@@ -114,6 +114,24 @@ class KoreanPosTest extends TestBase {
             KoreanPosTrie(Adverb, List(), ending = Some(Verb))
           ), ending = Some(Verb))
         ), ending = None)
+      )
+    )
+  }
+  test("buildTrie should build Trie correctly for initial optionals") {
+    // 1
+    assert(
+      buildTrie("A1", Adverb) === List(
+        KoreanPosTrie(Adverb, List(), ending = Some(Adverb))
+      )
+    )
+  }
+  test("buildTrie should build Trie correctly for initial non-optionals") {
+    // +
+    assert(
+      buildTrie("E+", Exclamation) === List(
+        KoreanPosTrie(Exclamation, List(
+          selfNode
+        ), ending = Some(Exclamation))
       )
     )
   }

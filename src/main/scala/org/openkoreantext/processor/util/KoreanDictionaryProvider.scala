@@ -1,5 +1,5 @@
 /*
- * Twitter Korean Text - Scala library to process Korean text
+ * Open Korean Text - Scala library to process Korean text
  *
  * Copyright 2014 Twitter, Inc.
  *
@@ -45,10 +45,11 @@ object KoreanDictionaryProvider {
       new java.util.HashMap[CharSequence, Float]
 
     readFileByLineFromResources(filename).foreach {
-      case line => if (line.contains("\t")) {
-        val data = line.split("\t")
-        freqMap.put(data(0), data(1).slice(0, 6).toFloat)
-      }
+      line =>
+        if (line.contains("\t")) {
+          val data = line.split("\t")
+          freqMap.put(data(0), data(1).slice(0, 6).toFloat)
+        }
     }
     freqMap
   }
@@ -117,7 +118,8 @@ object KoreanDictionaryProvider {
       "noun/slangs.txt", "noun/company_names.txt",
       "noun/foreign.txt", "noun/geolocations.txt", "noun/profane.txt",
       "substantives/given_names.txt", "noun/kpop.txt", "noun/bible.txt",
-      "noun/pokemon.txt", "noun/congress.txt", "noun/wikipedia_title_nouns.txt"
+      "noun/pokemon.txt", "noun/congress.txt", "noun/wikipedia_title_nouns.txt",
+      "noun/brand.txt", "noun/fashion.txt", "noun/neologism.txt"
     ))
     map.put(Verb, conjugatePredicatesToCharArraySet(readWordsAsSet("verb/verb.txt")))
     map.put(Adjective, conjugatePredicatesToCharArraySet(readWordsAsSet("adjective/adjective.txt"), isAdjective = true))
@@ -140,7 +142,8 @@ object KoreanDictionaryProvider {
     "noun/names.txt", "noun/twitter.txt", "noun/lol.txt", "noun/company_names.txt",
     "noun/foreign.txt", "noun/geolocations.txt",
     "substantives/given_names.txt", "noun/kpop.txt", "noun/bible.txt",
-    "noun/pokemon.txt", "noun/congress.txt", "noun/wikipedia_title_nouns.txt")
+    "noun/pokemon.txt", "noun/congress.txt", "noun/wikipedia_title_nouns.txt",
+    "noun/brand.txt", "noun/fashion.txt", "noun/neologism.txt")
 
   lazy val nameDictionary = Map(
     'family_name -> readWords("substantives/family_names.txt"),
